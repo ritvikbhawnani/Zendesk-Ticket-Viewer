@@ -1,5 +1,6 @@
 from models import APIModel
 from views import TicketView
+from dotenv import dotenv_values
 
 
 class TicketViewerController:
@@ -13,9 +14,11 @@ class TicketViewerController:
     """
 
     def __init__(self, model, view):
+
         self.model = model
         self.view = view
         self.has_quit = False
+        self.config = dotenv_values(".env")
 
     def get_input(self):
         """

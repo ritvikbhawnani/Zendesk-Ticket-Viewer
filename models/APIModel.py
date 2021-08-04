@@ -5,20 +5,20 @@ class APIModel:
     Args:
         subdomain (str): subdomain of the Zendesk account
                 username (str): username of the Zendesk account
-                password (str): password of the Zendesk account
+                api_token (str): api_token of the Zendesk account
 
         Attributes:
                 tickets (dict): this is where store the ticket data
                 subdomain (str): this is where we store the subdomain
                 username (str): this is where we store the username
-                password (str): this is where we store the password
+                api_token (str): this is where we store the api_token
     """
 
-    def __init__(self, subdomain, username, password):
+    def __init__(self, subdomain, username, api_token):
         self.ticket = {}
         self.subdomain = subdomain
         self.username = username
-        self.password = password
+        self.api_token = api_token
 
     def get_all_tickets(self):
         """
@@ -27,7 +27,7 @@ class APIModel:
         Returns:
             list of tickets (list of dicts)
         """
-        pass
+        return []
 
     def get_ticket_detail(self, ticket_id):
         """
@@ -40,4 +40,4 @@ class APIModel:
         Returns:
             ticket (dict)
         """
-        pass
+        return {}
