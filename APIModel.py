@@ -1,17 +1,20 @@
+import requests
+
+
 class APIModel:
     """
     The APIModel class interacts with the Zendesk API
 
     Args:
         subdomain (str): subdomain of the Zendesk account
-                username (str): username of the Zendesk account
-                api_token (str): api_token of the Zendesk account
+        username (str): username of the Zendesk account
+        api_token (str): api_token of the Zendesk account
 
-        Attributes:
-                tickets (dict): this is where store the ticket data
-                subdomain (str): this is where we store the subdomain
-                username (str): this is where we store the username
-                api_token (str): this is where we store the api_token
+    Attributes:
+        tickets (dict): this is where store the ticket data
+        subdomain (str): this is where we store the subdomain
+        username (str): this is where we store the username
+        api_token (str): this is where we store the api_token
     """
 
     def __init__(self, subdomain, username, api_token):
@@ -27,7 +30,11 @@ class APIModel:
         Returns:
             list of tickets (list of dicts)
         """
-        return []
+
+        response = requests.get(f'https://{self.subdomain}.zendesk.com/api/v2/tickets.json', auth=(
+            f'{self.username}/token', self.api_token))
+
+        return response
 
     def get_ticket_detail(self, ticket_id):
         """
@@ -40,4 +47,7 @@ class APIModel:
         Returns:
             ticket (dict)
         """
-        return {}
+        response = requests.get(f'https://{self.subdomain}.zendesk.com/api/v2/tickets/{ticket_id}.json', auth=(
+            f'{self.username}/token', self.api_token))
+
+        return response
